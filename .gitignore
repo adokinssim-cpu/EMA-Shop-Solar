@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Miscellaneous
 *.class
 *.log
@@ -68,4 +67,3 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
->>>>>>> b26b6899270b4e912315a16e8909e7e549ef1308

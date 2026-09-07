@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Supabase.initialize(
-    url: 'https://lpqafscddalkdahfkfxy.supabase.co',
-    publishableKey: 'sb_publishable_oPYi435V3A8PgC5MmMdalg_gpZna_GJ',
-  );
-
+void main() {
   runApp(const MyApp());
 }
 
@@ -19,10 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'EMA Shop',
+      title: 'EMA Shop Solar',
       home: Scaffold(
-        appBar: AppBar(title: const Text('EMA Shop')),
-        body: const Center(child: Text('Connexion à Supabase réussie 🚀')),
+        appBar: AppBar(title: const Text('EMA Shop Solar')),
+        body: const Center(child: Text('EMA Shop Solar 🚀')),
       ),
     );
   }
