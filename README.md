@@ -1,17 +1,23 @@
-# ema_shop
+# EMA Shop Solar
 
-A new Flutter project.
+Application mobile professionnelle de gestion et de commerce d'installations solaires, développée avec Flutter en respectant les principes de la **Clean Architecture**.
 
-## Getting Started
+## 🚀 Stack Technique & Architecture
 
-This project is a starting point for a Flutter application.
+* **Architecture :** Clean Architecture (Séparation en couches : `domain`, `data`, `presentation`)
+* **Gestion d'état :** Flutter Riverpod
+* **Navigation :** GoRouter (avec gestion des routes dynamiques)
+* **Backend & API :** Supabase (Base de données en ligne et authentification)
+* **Stockage Local :** Hive (Mise en cache locale et gestion du mode hors-ligne)
 
-A few resources to get you started if this is your first Flutter project:
+## 📁 Structure du Projet
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```text
+lib/
+│
+├── core/             # Configuration globale (routes, thèmes, constantes)
+├── features/         # Fonctionnalités modulaires (ex: products, profile)
+│   ├── data/         # Sources de données (local avec Hive, remote avec Supabase) & Repositories implémentés
+│   ├── domain/       # Entités métiers, interfaces de repositories et use cases
+│   └── presentation/ # Écrans, widgets et providers Riverpod
+└── main.dart         # Point d'entrée de l'application
