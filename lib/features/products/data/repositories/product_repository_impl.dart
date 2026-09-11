@@ -1,8 +1,7 @@
-import 'package:ema_shop_solar/features/products/data/datasources/product_local_data_source.dart';
-import 'package:ema_shop_solar/features/products/data/datasources/product_remote_data_source.dart';
-
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
+import '../datasources/product_local_data_source.dart';
+import '../datasources/product_remote_data_source.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDataSource remoteDataSource;
@@ -21,14 +20,12 @@ class ProductRepositoryImpl implements ProductRepository {
         limit: limit,
       );
 
-      // On met en cache uniquement la première page.
       if (page == 1) {
         await localDataSource.cacheProducts(products);
       }
 
       return products;
     } catch (_) {
-      // Fallback hors connexion.
       if (page == 1) {
         final cachedProducts = localDataSource.getCachedProducts();
 
@@ -48,11 +45,12 @@ class ProductRepositoryImpl implements ProductRepository {
     } catch (_) {
       final cachedProducts = localDataSource.getCachedProducts();
 
-      try {
-        return cachedProducts.firstWhere((product) => product.id == id);
-      } catch (_) {
-        rethrow;
-      }
+      return cachedProducts.firstWhere(
+        (product) => product.id == id,
+        orElse: () {
+          throw Exception('Produit introuvable.');
+        },
+      );
     }
   }
 }

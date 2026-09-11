@@ -1,14 +1,14 @@
+import 'package:ema_shop_solar/features/products/data/datasources/product_local_data_source.dart';
+import 'package:ema_shop_solar/features/products/data/datasources/product_remote_data_source.dart';
+import 'package:ema_shop_solar/features/products/data/repositories/product_repository_impl.dart';
+import 'package:ema_shop_solar/features/products/domain/entities/product.dart';
+import 'package:ema_shop_solar/features/products/domain/repositories/product_repository.dart';
 import 'package:ema_shop_solar/features/products/domain/usecases/get_product_by_id.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
 import '../../../../core/constants/api_constants.dart';
 import '../../../../core/network/dio_client.dart';
-import '../../data/datasources/product_local_data_source.dart';
-import '../../data/datasources/product_remote_data_source.dart';
-import '../../data/repositories/product_repository_impl.dart';
-import '../../domain/entities/product.dart';
-import '../../domain/repositories/product_repository.dart';
 
 final dioClientProvider = Provider<DioClient>((ref) {
   return DioClient(
@@ -62,7 +62,7 @@ class ProductsNotifier extends StateNotifier<AsyncValue<List<Product>>> {
 
       final products = await getProducts(page: _currentPage, limit: _pageSize);
 
-      state = AsyncData(products);
+      state = AsyncData(products.cast<Product>());
     } catch (e, stackTrace) {
       state = AsyncError(e, stackTrace);
     }

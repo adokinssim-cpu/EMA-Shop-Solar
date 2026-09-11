@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class DioClient {
   final Dio dio;
 
-  DioClient({required String baseUrl})
+  DioClient({required String baseUrl, required String apiKey})
     : dio = Dio(
         BaseOptions(
           baseUrl: baseUrl,
@@ -12,6 +12,7 @@ class DioClient {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
+            'apikey': apiKey,
           },
         ),
       );

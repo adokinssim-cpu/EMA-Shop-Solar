@@ -1,4 +1,4 @@
-# ema_shop_solar
+# ema_shop
 
 A new Flutter project.
 

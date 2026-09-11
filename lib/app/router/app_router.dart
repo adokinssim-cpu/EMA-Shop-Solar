@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-final routerProvider = Provider<GoRouter>((ref) {
-  return GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const PlaceholderScreen(title: 'EMA Shop Solar'),
-      ),
-    ],
-    errorBuilder: (context, state) => const PlaceholderScreen(title: 'Page introuvable'),
-  );
-});
+class AppRouter {
+  AppRouter._();
 
-class PlaceholderScreen extends StatelessWidget {
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(
+          builder: (_) => const _PlaceholderScreen(title: 'EMA Shop Solar'),
+        );
+
+      default:
+        return MaterialPageRoute(
+          builder: (_) => const _PlaceholderScreen(title: 'Page introuvable'),
+        );
+    }
+  }
+}
+
+class _PlaceholderScreen extends StatelessWidget {
   final String title;
 
-  const PlaceholderScreen({super.key, required this.title});
+  const _PlaceholderScreen({required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Text(
-          '$title 🚀',
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
+      body: Center(child: Text(title)),
     );
   }
 }
